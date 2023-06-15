@@ -10,10 +10,25 @@ fn bar() -> i32 {
     return 5;
 }
 
+fn error_me(throw: bool) -> Result<(), usize> {
+    if throw {
+        return Err(7);
 
+    }
+    return Ok(());
+}
 
 
 fn main() {
+    error_me(false)?;
+
+    // Same as
+    // let value = match error_me(false) {
+    //     Err(e) => return Err(e),
+    //     Ok(v) => v,
+    // };
+
+
     let mut a = vec![];
     a.push(1);
     let mut b = a.clone();
